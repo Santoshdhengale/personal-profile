@@ -120,17 +120,20 @@ body {
     align-items: center;
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
+    color: rgba(255,255,255,0.95) !important;
   }
   
   .navbar-nav .nav-link:hover {
     background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,107,53,0.3));
     transform: translateX(5px);
     box-shadow: 0 4px 20px rgba(255,215,0,0.2);
+    color: #fff !important;
   }
   
   .navbar-nav .nav-link.active {
     background: linear-gradient(135deg, #ffd700, #ff6b35);
     transform: translateX(5px);
+    color: #fff !important;
   }
   
   .navbar-nav .nav-link i {
@@ -138,46 +141,36 @@ body {
     margin-right: 12px;
     width: 24px;
     text-align: center;
+    color: inherit;
   }
   
   .navbar-nav .nav-link span {
     flex: 1;
     text-align: left;
-  }
-  
-  /* Force show text on mobile - Override Bootstrap classes */
-  .navbar-nav .nav-link .d-lg-inline.d-none {
-    display: inline-block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  .navbar-nav .nav-link .d-lg-inline {
-    display: inline-block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* Alternative targeting for spans inside nav links */
-  .navbar-nav .nav-link span.d-lg-inline,
-  .navbar-nav .nav-link span[class*="d-lg-inline"] {
     display: inline-block !important;
     opacity: 1 !important;
     visibility: visible !important;
     font-size: 1.1rem;
-    color: rgba(255,255,255,0.95) !important;
+    color: inherit;
+    font-weight: 500;
   }
 }
 
-/* Additional mobile text visibility rules */
+/* Additional mobile responsive styles */
 @media (max-width: 767.98px) {
-  /* Force all navbar text to be visible on small mobile screens */
-  .navbar-nav .nav-link span,
-  .navbar-nav .nav-link .d-lg-inline,
-  .navbar-nav .nav-link .d-none {
-    display: inline-block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+  /* Ensure all navbar elements are properly visible on very small screens */
+  .navbar-nav .nav-link {
+    font-size: 1rem;
+    padding: 12px 15px !important;
+  }
+  
+  .navbar-nav .nav-link span {
+    font-size: 1rem;
+  }
+  
+  .navbar-nav .nav-link i {
+    font-size: 1.2rem;
+    margin-right: 10px;
   }
 }
 
