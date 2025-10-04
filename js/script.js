@@ -121,10 +121,20 @@ document.addEventListener('DOMContentLoaded', function() {
       // Send AJAX request
       fetch('insert.php', {
         method: 'POST',
-        body: formData
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
       })
-      .then(response => response.text())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
       .then(data => {
+        console.log('Server response:', data); // Debug log
+        
         // Hide loading state
         btnText.classList.remove('d-none');
         btnLoading.classList.add('d-none');
@@ -146,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
           formMessage.innerHTML = `
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <i class="fas fa-exclamation-circle me-2"></i>
-              <strong>Error!</strong> There was an issue sending your message. Please try again.
+              <strong>Error!</strong> ${data}
               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
           `;
@@ -158,6 +168,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
       })
       .catch(error => {
+        console.error('AJAX Error:', error); // Debug log
+        
         // Hide loading state
         btnText.classList.remove('d-none');
         btnLoading.classList.add('d-none');
@@ -168,10 +180,17 @@ document.addEventListener('DOMContentLoaded', function() {
         formMessage.innerHTML = `
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <i class="fas fa-exclamation-triangle me-2"></i>
-            <strong>Error!</strong> Network error. Please check your connection and try again.
+            <strong>Connection Error!</strong> 
+            Unable to connect to the server. Please make sure XAMPP Apache is running and try again.
+            <br><small>Error details: ${error.message}</small>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
           </div>
         `;
+        
+        // Auto-hide message after 10 seconds for errors
+        setTimeout(() => {
+          formMessage.style.display = 'none';
+        }, 10000);
       });
     });
   }
