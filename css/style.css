@@ -32,52 +32,192 @@ body {
 
 /* Enhanced Navbar Styles */
 .navbar {
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  backdrop-filter: blur(15px);
+  transition: all 0.4s ease;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .navbar-scrolled {
-  background-color: rgba(33, 37, 41, 0.95) !important;
+  background: linear-gradient(135deg, #4c63d2 0%, #5a4b8a 100%) !important;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .gradient-text {
-  background: linear-gradient(45deg, #ffc107, #fd7e14);
+  background: linear-gradient(45deg, #ffd700, #ff6b35, #f7931e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { 
+    background: linear-gradient(45deg, #ffd700, #ff6b35, #f7931e);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  50% { 
+    background: linear-gradient(45deg, #ff6b35, #f7931e, #ffd700);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 }
 
 .navbar-nav .nav-link {
   position: relative;
   transition: all 0.3s ease;
-  border-radius: 6px;
-  margin: 0 5px;
+  border-radius: 8px;
+  margin: 0 3px;
+  color: rgba(255,255,255,0.9) !important;
+  font-weight: 500;
+  padding: 8px 12px !important;
 }
 
 .navbar-nav .nav-link:hover {
-  background-color: rgba(255, 193, 7, 0.1);
+  background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,107,53,0.2));
   transform: translateY(-2px);
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(255,215,0,0.3);
 }
 
 .navbar-nav .nav-link.active {
-  background-color: rgba(255, 193, 7, 0.2);
-  color: #ffc107 !important;
+  background: linear-gradient(135deg, #ffd700, #ff6b35);
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(255,215,0,0.4);
+  font-weight: 600;
+}
+
+.navbar-nav .nav-link i {
+  font-size: 1.1rem;
+  margin-right: 6px;
 }
 
 /* Mobile navbar improvements */
 @media (max-width: 991.98px) {
   .navbar-collapse {
-    background-color: rgba(33, 37, 41, 0.98);
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    margin-top: 15px;
+    padding: 25px 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
   }
   
   .navbar-nav .nav-link {
-    padding: 12px 16px;
-    margin: 5px 0;
-    border-radius: 8px;
+    padding: 15px 20px !important;
+    margin: 8px 0;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    display: flex !important;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
   }
+  
+  .navbar-nav .nav-link:hover {
+    background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,107,53,0.3));
+    transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba(255,215,0,0.2);
+  }
+  
+  .navbar-nav .nav-link.active {
+    background: linear-gradient(135deg, #ffd700, #ff6b35);
+    transform: translateX(5px);
+  }
+  
+  .navbar-nav .nav-link i {
+    font-size: 1.3rem;
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+  }
+  
+  .navbar-nav .nav-link span {
+    flex: 1;
+    text-align: left;
+  }
+  
+  /* Force show text on mobile - Override Bootstrap classes */
+  .navbar-nav .nav-link .d-lg-inline.d-none {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .navbar-nav .nav-link .d-lg-inline {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Alternative targeting for spans inside nav links */
+  .navbar-nav .nav-link span.d-lg-inline,
+  .navbar-nav .nav-link span[class*="d-lg-inline"] {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.95) !important;
+  }
+}
+
+/* Additional mobile text visibility rules */
+@media (max-width: 767.98px) {
+  /* Force all navbar text to be visible on small mobile screens */
+  .navbar-nav .nav-link span,
+  .navbar-nav .nav-link .d-lg-inline,
+  .navbar-nav .nav-link .d-none {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+/* Navbar toggler improvements */
+.navbar-toggler {
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+  border-color: #ffd700;
+  background: rgba(255,215,0,0.1);
+  transform: scale(1.05);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(255,215,0,0.3);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Download CV button in navbar */
+.navbar .btn-outline-warning {
+  border: 2px solid #ffd700;
+  color: #ffd700;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.navbar .btn-outline-warning:hover {
+  background: #ffd700;
+  color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255,215,0,0.4);
 }
 
 /* Resume Section Responsive Styles */
